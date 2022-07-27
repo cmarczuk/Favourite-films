@@ -1,23 +1,5 @@
 <div class="full-width">
-  <div class="buttons full-width">
-    <div class="inner">
-      <p>Akcje:</p>
-      <button class="btn" (click)="clearList()">Wyczyść</button>
-      <button class="btn" (click)="loadDemo()">Wgraj demo</button>
-    </div>
-    <div class="inner">
-      <p>Kolejność:</p>
-      <button class="btn" [ngClass]="{'active':sortType=='latest'}" (click)="sortByLatest()">Od najnowszych</button>
-      <button class="btn" [ngClass]="{'active':sortType=='eldest'}" (click)="sortByEldest()">Od najstarszych</button>
-      <p>Widok:</p>
-      <button class="btn" [ngClass]="{'active':listDisplay=='lista'}" (click)="changeDisplay('lista')">
-        <mat-icon>view_list</mat-icon>
-      </button>
-      <button class="btn" [ngClass]="{'active':listDisplay=='kafelki'}" (click)="changeDisplay('kafelki')">
-        <mat-icon>view_module</mat-icon>
-      </button>
-    </div>
-  </div>
+  <app-buttons-panel></app-buttons-panel>
   <mat-progress-spinner [mode]="'indeterminate'" *ngIf="loading | async"></mat-progress-spinner>
   <div ngClass="{{listDisplay}} data">
     <ng-container *ngIf="listDisplay=='kafelki'">

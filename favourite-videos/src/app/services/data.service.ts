@@ -155,4 +155,9 @@ export class DataService {
   public getVideo(id: string) {
     return this._videos.value.find(v => v.id == id);
   }
+
+
+  public getVideos() {
+    return this._videos.value
+  }
 }

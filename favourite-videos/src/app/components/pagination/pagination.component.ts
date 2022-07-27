@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import { Video } from 'src/app/interfaces/video';
 import { DataService } from 'src/app/services/data.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 
 @Component({
@@ -16,9 +16,9 @@ export class PaginationComponent implements OnInit {
   numberDisplayedVideos = 16;
   pages: number[] = [];
   currentPage: number = 0;
-  constructor(private data: DataService, private router: Router) { }
+  constructor(private data: DataService, private loading: LoadingService) { }
   ngOnInit() {
-    this.data.displayVideos.subscribe((res) => { this.videos = res; setTimeout(() => this.loadPage(this.currentPage), 1000) })
+    this.data.displayVideos.subscribe((res) => { this.videos = res; this.loading.show(); setTimeout(() => { this.loading.hide(); this.loadPage(this.currentPage) }, 1000) })
   }
 
   public loadPage(nr: number): void {

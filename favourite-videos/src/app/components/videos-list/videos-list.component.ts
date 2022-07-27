@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Video } from '../../interfaces/video';
 import { LoadingService } from '../../services/loading.service';
 import { DataService } from 'src/app/services/data.service';
+import { ListDisplayService } from 'src/app/services/list-display.service';
 
 @Component({
   selector: 'app-videos-list',
@@ -12,13 +13,11 @@ export class VideosListComponent {
   videos: Video[] = [];
   displayedVideos?: Video[];
   currentPage: number = 0;
-  listDisplay: string = 'kafelki';
+  listDisplay!: string;
   pages: number[] = [];
   loading = this.loader.loading;
-  numberDisplayedVideos = 16;
-  sortType: string = 'latest';
 
-  constructor(private data: DataService, public loader: LoadingService) {
+  constructor(private data: DataService, public loader: LoadingService, private ld: ListDisplayService) {
     this.loader.show();
     this.data.displayVideos.subscribe((res) => {
       this.videos = res;
@@ -26,42 +25,10 @@ export class VideosListComponent {
         this.loader.hide();
       }, 1000)
     });
+    this.ld.listDisplay.subscribe((res) => this.listDisplay = res);
   }
 
   public getPageVideos(newVideos: Video[]) {
     this.displayedVideos = newVideos;
-  }
-
-  public clearList(): void {
-    this.data.clearData();
-  }
-
-  public loadDemo(): void {
-    this.data.loadDemo();
-  }
-
-  private sortByDate(a: Video, b: Video) {
-    return new Date(a.addedDate).getTime() - new Date(b.addedDate).getTime();
-  }
-
-  public sortByEldest(): void {
-    this.sortType = 'eldest';
-    this.data.saveVideos(this.videos.sort(this.sortByDate));
-  }
-
-  public sortByLatest(): void {
-    this.sortType = 'latest'
-    this.data.saveVideos(this.videos.sort((a, b) => this.sortByDate(b, a)));
-  }
-
-  public changeDisplay(type: string): void {
-    switch (type) {
-      case 'kafelki':
-        this.listDisplay = 'kafelki'
-        break;
-      case 'lista':
-        this.listDisplay = 'lista'
-        break;
-    }
   }
 }

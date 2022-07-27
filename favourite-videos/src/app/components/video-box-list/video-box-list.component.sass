@@ -3,6 +3,10 @@
   flex-direction: row
   & .modal-link
     width: 40%
+    line-height: 0.6
+    min-height: 161px
+    display: flex
+    align-items: center
     & .thumbnail
       width: 100%
   & .inner
@@ -22,13 +26,14 @@
     & .stats
       display: flex
       & p:first-child
-        margin-right: 15px
+        margin-right: 10px
 
 h3
   display: -webkit-box
   overflow: hidden
   -webkit-line-clamp: 2
   -webkit-box-orient: vertical
+  margin: 0
 
 .description
   padding: 15px
