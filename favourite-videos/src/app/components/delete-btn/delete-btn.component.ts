@@ -11,10 +11,12 @@ import { DataService } from 'src/app/services/data.service';
 export class DeleteBtnComponent {
   @Input() video!: Video;
 
-  constructor(private data: DataService, private router:Router) { }
+  constructor(private data: DataService, private router: Router) { }
 
   public removeVideo(idVideo: string): void {
     this.data.removeVideo(idVideo);
-    this.router.navigate(['home']);
+    if(this.router.url.includes('video')){
+      this.router.navigate(['home']);
+    }
   }
 }
