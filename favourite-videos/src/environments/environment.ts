@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  API_YT_TOKEN: 'AIzaSyComhotVZpjfyikUaMQhqSp5gl1jxH-w88',
+  API_VIMEO_TOKEN: '350e9e9e86975b8efef8c07d3384741f'
+
 };
 
 /*

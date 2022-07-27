@@ -18,13 +18,10 @@ export class PaginationComponent implements OnInit {
   currentPage: number = 0;
   constructor(private data: DataService, private router: Router) { }
   ngOnInit() {
-    this.data.videos.subscribe((res) => { this.videos = res; setTimeout(() => this.loadPage(this.currentPage), 1000) })
+    this.data.displayVideos.subscribe((res) => { this.videos = res; setTimeout(() => this.loadPage(this.currentPage), 1000) })
   }
 
   public loadPage(nr: number): void {
-    if (this.router.url == '/favourite') {
-      this.videos = this.videos.filter((v) => v.favourite)
-    }
     this.currentPage = nr;
     let currentVideos;
     if (this.pages[this.pages.length - 1] != Math.floor(this.videos.length / this.numberDisplayedVideos + 0.99)) {

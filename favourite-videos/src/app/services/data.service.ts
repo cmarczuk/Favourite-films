@@ -10,8 +10,8 @@ import { LocaleStorageService } from './localestorage.service';
 export class DataService {
   private _videos = new BehaviorSubject<Video[]>([]);
   public videos = this._videos.asObservable();
-  private _displayedVideos = new BehaviorSubject<Video[]>([]);
-  public displayedVideos = this._displayedVideos.asObservable();
+  private _displayVideos = new BehaviorSubject<Video[]>([]);
+  public displayVideos = this._displayVideos.asObservable();
   private demoVideos = [
     'k5E2AVpwsko',
     'bpOSxM0rNPM',
@@ -36,6 +36,10 @@ export class DataService {
   constructor(private http: HttpService, private localStorage: LocaleStorageService) {
     this._videos.next(this.localStorage.getData());
     this.refreshVideos();
+  }
+
+  public updateDisplayVideos(newVideos: Video[]) {
+    this._displayVideos.next(newVideos);
   }
 
   public saveVideos(videos: Video[]): void {

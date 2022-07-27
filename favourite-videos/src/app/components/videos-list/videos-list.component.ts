@@ -16,10 +16,11 @@ export class VideosListComponent {
   pages: number[] = [];
   loading = this.loader.loading;
   numberDisplayedVideos = 16;
+  sortType: string = 'latest';
 
   constructor(private data: DataService, public loader: LoadingService) {
     this.loader.show();
-    this.data.videos.subscribe((res) => {
+    this.data.displayVideos.subscribe((res) => {
       this.videos = res;
       setTimeout(() => {
         this.loader.hide();
@@ -44,10 +45,12 @@ export class VideosListComponent {
   }
 
   public sortByEldest(): void {
+    this.sortType = 'eldest';
     this.data.saveVideos(this.videos.sort(this.sortByDate));
   }
 
   public sortByLatest(): void {
+    this.sortType = 'latest'
     this.data.saveVideos(this.videos.sort((a, b) => this.sortByDate(b, a)));
   }
 

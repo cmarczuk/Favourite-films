@@ -7,13 +7,13 @@
     </div>
     <div class="inner">
       <p>Kolejność:</p>
-      <button class="btn" (click)="sortByLatest()">Od najnowszych</button>
-      <button class="btn" (click)="sortByEldest()">Od najstarszych</button>
+      <button class="btn" [ngClass]="{'active':sortType=='latest'}"  (click)="sortByLatest()">Od najnowszych</button>
+      <button class="btn" [ngClass]="{'active':sortType=='eldest'}" (click)="sortByEldest()">Od najstarszych</button>
       <p>Widok:</p>
-      <button class="btn" (click)="changeDisplay('lista')">
+      <button class="btn" [ngClass]="{'active':listDisplay=='lista'}" (click)="changeDisplay('lista')">
         <mat-icon>view_list</mat-icon>
       </button>
-      <button class="btn" (click)="changeDisplay('kafelki')">
+      <button class="btn" [ngClass]="{'active':listDisplay=='kafelki'}" (click)="changeDisplay('kafelki')">
         <mat-icon>view_module</mat-icon>
       </button>
     </div>
