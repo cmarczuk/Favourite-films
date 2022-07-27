@@ -1,0 +1,18 @@
+<div class="videoBox">
+  <a (click)="openDialog(video)" class="modal-link"><img [src]="video.thumbnail" alt="thumbnail" class="thumbnail">
+  </a>
+  <div class="description">
+    <a [routerLink]="['/video', video.id]">
+      <h3>{{video.title}}</h3>
+    </a>
+    <div class="stats">
+      <p>{{video.likeCount}} like</p>
+      <p><span *ngIf="video.hasOwnProperty('viewCount')">{{video.viewCount}} wyświetleń</span>&nbsp;</p>
+    </div>
+    <div class="btns-actions">
+      <app-favourite-btn [video]="video"></app-favourite-btn>
+      <app-delete-btn [video]="video"></app-delete-btn>
+    </div>
+  </div>
+</div>
+

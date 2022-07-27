@@ -1,0 +1,17 @@
+<div class="inner">
+  <div class="top">
+    <h1>{{video.title}}</h1>
+    <div class="btns-actions">
+      <app-favourite-btn [video]="video"></app-favourite-btn>
+      <app-delete-btn [video]="video"></app-delete-btn>
+    </div>
+  </div>
+  <iframe [src]="videoUrl" allow="autoplay; fullscreen; picture-in-picture" title="Video"></iframe>
+  <div class="bottom">
+    <div class="stats">
+      <span>Liczba wyświetleń <strong>{{video.viewCount}}</strong></span>
+      <span>Liczba polubień <strong>{{video.likeCount}}</strong></span>
+    </div>
+    <span>Data dodania: <strong>{{video!.addedDate | data}}</strong></span>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<form [formGroup]="urlForm" (submit)="addVideo()">
+  <div class="input">
+    <input type="url" formControlName="urlVideo" id="url-video" placeholder="Paste link to video">
+    <button class="btn" type="submit"><mat-icon>add</mat-icon></button>
+  </div>
+</form>

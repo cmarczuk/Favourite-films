@@ -1,0 +1,8 @@
+<div class="pagination">
+  <span (click)="loadPage(0)">&#60;&#60;</span>
+  <span (click)="previousPage()">&#60;</span>
+  <span *ngFor="let page of pages | slice:currentPage-3>0?currentPage-3:0:currentPage+4" (click)="loadPage(page - 1)"
+    [ngClass]="{'active':currentPage==page-1}">{{page}}</span>
+  <span (click)="nextPage()">&#62;</span>
+  <span (click)="loadPage(pages[pages.length-1]-1)">&#62;&#62;</span>
+</div>
