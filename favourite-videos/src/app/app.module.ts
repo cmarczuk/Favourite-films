@@ -21,6 +21,8 @@ import { FavouriteBtnComponent } from './components/favourite-btn/favourite-btn.
 import { DeleteBtnComponent } from './components/delete-btn/delete-btn.component';
 import { VideoBoxComponent } from './components/video-box/video-box.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { VideoBoxListComponent } from './components/video-box-list/video-box-list.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -43,7 +45,8 @@ const routes: Routes = [
     FavouriteBtnComponent,
     DeleteBtnComponent,
     VideoBoxComponent,
-    PaginationComponent
+    PaginationComponent,
+    VideoBoxListComponent
   ],
   imports: [
     BrowserModule,
@@ -53,9 +56,11 @@ const routes: Routes = [
     MatIconModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    MatToolbarModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 

@@ -7,7 +7,7 @@
     </div>
     <div class="inner">
       <p>Kolejność:</p>
-      <button class="btn" [ngClass]="{'active':sortType=='latest'}"  (click)="sortByLatest()">Od najnowszych</button>
+      <button class="btn" [ngClass]="{'active':sortType=='latest'}" (click)="sortByLatest()">Od najnowszych</button>
       <button class="btn" [ngClass]="{'active':sortType=='eldest'}" (click)="sortByEldest()">Od najstarszych</button>
       <p>Widok:</p>
       <button class="btn" [ngClass]="{'active':listDisplay=='lista'}" (click)="changeDisplay('lista')">
@@ -20,8 +20,13 @@
   </div>
   <mat-progress-spinner [mode]="'indeterminate'" *ngIf="loading | async"></mat-progress-spinner>
   <div ngClass="{{listDisplay}} data">
-    <app-video-box *ngFor="let video of displayedVideos" [video]="video" class="videoBox">
-    </app-video-box>
+    <ng-container *ngIf="listDisplay=='kafelki'">
+      <app-video-box *ngFor="let video of displayedVideos" [video]="video" class="videoBox">
+      </app-video-box>
+    </ng-container>
+    <ng-container *ngIf="listDisplay=='lista'">
+      <app-video-box-list *ngFor="let video of displayedVideos" [video]="video" class="videoBox"></app-video-box-list>
+    </ng-container>
   </div>
   <app-pagination (pageEvent)="getPageVideos($event)"></app-pagination>
 </div>
